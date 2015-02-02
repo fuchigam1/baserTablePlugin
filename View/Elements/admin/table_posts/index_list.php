@@ -18,51 +18,53 @@
 <!-- list -->
 <table cellpadding="0" cellspacing="0" class="list-table" id="ListTable">
 <thead>
-	<tr>
-		<th class="list-tool">
-			<div>
-			<?php if ($newCatAddable): ?>
-				<?php $this->BcBaser->link($this->BcBaser->getImg('admin/btn_add.png', array('width' => 69, 'height' => 18, 'alt' => '新規追加', 'class' => 'btn')), array('action' => 'add', $tableContent['TableContent']['id'])) ?>
-			<?php endif ?>
-			</div>
-			<?php if ($this->BcBaser->isAdminUser()): ?>
-			<div>
-				<?php echo $this->BcForm->checkbox('ListTool.checkall', array('title' => '一括選択')) ?>
-				<?php echo $this->BcForm->input('ListTool.batch', array('type' => 'select', 'options' => array('publish' => '公開', 'unpublish' => '非公開', 'del' => '削除'), 'empty' => '一括処理')) ?>
-				<?php echo $this->BcForm->button('適用', array('id' => 'BtnApplyBatch', 'disabled' => 'disabled')) ?>
-			</div>
-			<?php endif ?>
-		</th>
-		<th><?php echo $this->Paginator->sort('no', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' NO', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' NO'), array('escape' => false, 'class' => 'btn-direction')) ?></th>
-		<th><?php echo $this->Paginator->sort('posts_date', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' 投稿日', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' 投稿日'), array('escape' => false, 'class' => 'btn-direction')) ?></th>
-		<th>
-			<?php echo $this->Paginator->sort('TableCategory.name', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' カテゴリ', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' カテゴリ'), array('escape' => false, 'class' => 'btn-direction')) ?>
-			<?php if ($tableContent['TableContent']['tag_use']): ?>
-			<span class="tag">タグ</span>
-			<?php endif ?><br />
-			<?php echo $this->Paginator->sort('name', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' タイトル', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' タイトル'), array('escape' => false, 'class' => 'btn-direction')) ?>
-		</th>
-		<th><?php echo $this->Paginator->sort('user_id', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' 作成者', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' 作成者'), array('escape' => false, 'class' => 'btn-direction')) ?></th>
-		<th><?php echo $this->Paginator->sort('status', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' 公開状態', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' 公開状態'), array('escape' => false, 'class' => 'btn-direction')) ?></th>
-		<?php if ($tableContent['TableContent']['comment_use']): ?>
-			<th>コメント</th>
-		<?php endif ?>
-		<th>
-			<?php echo $this->Paginator->sort('created', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' 登録日', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' 登録日'), array('escape' => false, 'class' => 'btn-direction')) ?><br />
-			<?php echo $this->Paginator->sort('modified', array('asc' => $this->BcBaser->getImg('admin/blt_list_down.png', array('alt' => '昇順', 'title' => '昇順')) . ' 更新日', 'desc' => $this->BcBaser->getImg('admin/blt_list_up.png', array('alt' => '降順', 'title' => '降順')) . ' 更新日'), array('escape' => false, 'class' => 'btn-direction')) ?>
-		</th>
-	</tr>
+
+	<th>詳細</th>
+	<th>プレビュー</th>
+	<th>公開</th>
+
+	<th>name</th>
+	<th>content</th>
+	<th>detail</th>
+	<th>content_draft</th>
+	<th>detail_draft</th>
+
+	<th>eye_catch</th>
+
+	<th>category</th>
+
+	<th>tags</th>
+
+	<th>user</th>
+
+	<th>exclude_search</th>
+
+	<th>posts_date</th>
+	<th>publish_begin</th>
+	<th>publish_end</th>
+	<th>created</th>
+	<th>modified</th>
+
+	<th>コピー</th>
+	<th>削除</th>
+
 </thead>
 <tbody>
-<?php if (!empty($posts)): ?>
-	<?php foreach ($posts as $data): ?>
-		<?php $this->BcBaser->element('table_posts/index_row', array('data' => $data)) ?>
-	<?php endforeach; ?>
+	<?php if (!empty($posts)): ?>
+
+		<?php foreach ($posts as $data): ?>
+
+			<?php $this->BcBaser->element('table_posts/index_row', array('data' => $data)) ?>
+
+		<?php endforeach; ?>
+
 	<?php else: ?>
-	<tr>
-		<td colspan="9"><p class="no-data">データが見つかりませんでした。</p></td>
-	</tr>
-<?php endif; ?>
+
+		<tr>
+			<td colspan="9"><p class="no-data">データが見つかりませんでした。</p></td>
+		</tr>
+
+	<?php endif; ?>
 </tbody>
 </table>
 

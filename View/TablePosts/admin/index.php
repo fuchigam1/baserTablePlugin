@@ -18,6 +18,11 @@ $this->BcBaser->js(array(
 ));
 ?>
 
+<style type="text/css">
+#DataList {
+	overflow: auto;
+}
+</style>
 
 <script type="text/javascript">
 $(document).ready(function(){
